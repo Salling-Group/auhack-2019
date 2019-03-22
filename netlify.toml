@@ -1,0 +1,21 @@
+[Settings]
+# Settings in the [build] context are global and are applied to all contexts
+# unless otherwise overridden by more specific contexts.
+[build]
+  # Default build command.
+  command = "echo 'Building default context' && npm run build"
+
+# Production context: all deploys from the Production branch set in your site's
+# deploy contexts will inherit these settings.
+[context.production]
+  command = "echo 'Building production context' && npm run build"
+
+# Deploy Preview context: all deploys resulting from a pull/merge request will
+# inherit these settings.
+[context.deploy-preview]
+  command = "echo 'Building pull request context' && npm run build:pull-request"
+
+# Branch Deploy context: all deploys that are not from a pull/merge request or
+# from the Production branch will inherit these settings.
+[context.branch-deploy]
+  command = "echo 'Building branch context' && npm run build:branch"
